@@ -9,4 +9,4 @@
     modalSuccess.className = 'modal';
     modalWindow.className = 'modal'; 
 }
-showSuccess.onclick = () => modalSuccess.className =  'modal modal_active';
+showSuccess.onclick = () => modalSuccess.className = 'modal modal_active';
