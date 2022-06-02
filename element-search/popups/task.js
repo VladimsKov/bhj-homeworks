@@ -4,9 +4,13 @@
  const showSuccess = document.querySelector('.show-success');
  const modalSuccess = document.getElementById('modal_success');
  
- modalClose[0].onclick = () => modalWindow.className = 'modal';
- modalClose[1].onclick = () => {
-    modalSuccess.className = 'modal';
-    modalWindow.className = 'modal'; 
+ for (let elem of modalClose) {
+    elem.onclick = function() {
+        this.closest('.modal_active').className = 'modal';
+    }
 }
-showSuccess.onclick = () => modalSuccess.className = 'modal modal_active';
+
+showSuccess.onclick = () => {
+    modalWindow.className = 'modal';
+    modalSuccess.className = 'modal modal_active';
+}
