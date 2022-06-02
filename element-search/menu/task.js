@@ -15,8 +15,12 @@ arrLinks.forEach((item) => {
     let subItem = parentItem.querySelector('.menu_sub');
     if (subItem) {
         item.onclick = () => {
-            subItem.className = 'menu menu_sub menu_active';
-            closeOtherLinks(subItem);            
+            if (subItem.className == 'menu menu_sub menu_active') {
+                subItem.className = 'menu menu_sub';
+            } else {
+                subItem.className = 'menu menu_sub menu_active';
+                closeOtherLinks(subItem);
+            }            
             return false;
         }
     }    
