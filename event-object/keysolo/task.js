@@ -4,19 +4,43 @@ class Game {
     this.wordElement = container.querySelector('.word');
     this.winsElement = container.querySelector('.status__wins');
     this.lossElement = container.querySelector('.status__loss');
+    this.timerElement = container.querySelector('.input__timer');
     
     this.reset();
     
     this.registerEvents();
+    
+    this.inputTimer();
   }
   
   reset() {
     this.setNewWord();
     this.winsElement.textContent = 0;
-    this.lossElement.textContent = 0;
+    this.lossElement.textContent = 0;        
+  }
+  
+  inputTimer() {
+    
+    this.timerId = setInterval(() => {
+      if (this.leftTime !== 0) {
+        this.leftTime--;
+        this.timerElement.textContent = this.leftTime;
+      } else {
+        this.stopTimer();
+        alert('Время вышло');
+        this.setNewWord();
+        this.inputTimer();
+      }
+      
+    }, 1000);    
+  }
+  
+  stopTimer() {
+    clearInterval(this.timerId);    
   }
   
   registerEvents() {
+    
     document.addEventListener('keydown', (event) => {
       let inputSumbol = event.key.toUpperCase();
       let wordSymbol = this.currentSymbol.textContent.toUpperCase();
@@ -32,6 +56,7 @@ class Game {
     this.currentSymbol.classList.add('symbol_correct');
     this.currentSymbol = this.currentSymbol.nextElementSibling;
     if (this.currentSymbol !== null) {
+      
       return;
     }
     
@@ -51,7 +76,9 @@ class Game {
   }
   
   setNewWord() {
+    
     const word = this.getWord();
+    this.timerElement.textContent = this.leftTime;
     
     this.renderWord(word);
   }
@@ -71,7 +98,7 @@ class Game {
       'javascript'
     ],
     index = Math.floor(Math.random() * words.length);
-    
+    this.leftTime = words[index].length;
     return words[index];
   }
   
@@ -84,7 +111,7 @@ class Game {
       .join('');
       this.wordElement.innerHTML = html;
       
-      this.currentSymbol = this.wordElement.querySelector('.symbol_current');
+      this.currentSymbol = this.wordElement.querySelector('.symbol_current');      
     }
   }
   
