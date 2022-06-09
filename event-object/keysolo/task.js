@@ -65,6 +65,8 @@ class Game {
       this.reset();
     }
     this.setNewWord();
+    this.stopTimer();
+    this.inputTimer();
   }
   
   fail() {
@@ -73,6 +75,8 @@ class Game {
       this.reset();
     }
     this.setNewWord();
+    this.stopTimer();
+    this.inputTimer();
   }
   
   setNewWord() {
