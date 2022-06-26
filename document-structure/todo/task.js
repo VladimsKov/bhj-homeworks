@@ -11,8 +11,9 @@ function addTask(taskText) {
     </div>
     <a href="#" class="task__remove">&times;</a>` 
     tasksList.appendChild(task);
+    tasksInput.value = '';
     task.lastChild.addEventListener('click', () => {
-        task.remove();
+        task.remove();        
     })    
 }
 
